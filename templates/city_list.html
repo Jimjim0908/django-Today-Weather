@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>City List</title>
+        <meta charset="utf-8">
+        <style type="text/css">
+            h2 {
+                text-align: left;
+                font-family:'Times New Roman', Times, serif;
+            }
+            html {
+                font-size: 18px; /* px means 'pixels': the base font size is now 10 pixels high  */
+            }
+            body {font-family:'Times New Roman', Times, serif;}
+        </style>
+        </head>
+    <body>
+        <h2> 城市名稱 </h2>
+        <p><a href="/index/">Back</a></p>
+        {% for i in city_lst %}
+        <div>{{ i }}</div>
+        {% endfor %}
+
+
+    </body>
+</html>
