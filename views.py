@@ -6,12 +6,17 @@ import urllib.request as ur
 import json
 #用城市名搜尋woeid: https://www.metaweather.com/api/location/search/?query=tokyo
 #用woeid搜尋氣候資訊: https://www.metaweather.com/api/location/1118370/
+#https://www.metaweather.com/api/location/search/?query=new%20york
 def index(request):
     if 'city_name' in request.GET and request.GET['city_name'] !='':
-        #從網站擷取woeid
+        #如有空格先處理
         input = request.GET['city_name']
         url = 'https://www.metaweather.com/api/location/'
-        url_id = url + 'search/?query=' + request.GET['city_name']
+        url_id = url + 'search/?query=' + input
+        if ' ' in request.GET['city_name']:
+            newinput = input.replace(' ', '%20')
+            url_id = url + 'search/?query=' + newinput
+        #從網站擷取woeid
         conn_id = ur.urlopen(url_id)
         data_id = conn_id.read()
         #(conn.getheader('Content-Type'))確認資料為json
